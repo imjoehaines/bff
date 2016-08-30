@@ -16,4 +16,11 @@ return (new Router)
     })
     ->get('/thing2', function (Request $request, Respond $respond) : Response {
         throw new Exception('Error');
-    });
+    })
+    ->post('/abc', function (Request $request, Respond $respond) : Response {
+        return $respond($_POST);
+    })
+    ->get('/abc', function (Request $request, Respond $respond) : Response {
+        return $respond(['get']);
+    })
+;
