@@ -10,7 +10,7 @@ class App
 {
     public static function run(Router $router, Request $request)
     {
-        $routeHandler = $router->match($request->getMethod(), $request->getUri()->getPath());
+        $routeHandler = $router->match($request);
 
         $response = $routeHandler->handle($request);
 

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Bff;
 
-use Psr\Http\Message\RequestInterface as Request;
-
 class RouteHandler
 {
     private $handler;

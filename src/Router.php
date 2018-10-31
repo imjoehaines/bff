@@ -5,17 +5,19 @@ declare(strict_types=1);
 namespace Bff;
 
 use BadMethodCallException;
-use Psr\Http\Message\RequestInterface as Request;
 
 class Router
 {
     private $allowedMethods = ['POST', 'GET', 'PUT', 'PATCH', 'DELETE'];
     private $routes = [];
 
-    public function match(string $method, string $uri) : RouteHandler
+    public function match(Request $request) : RouteHandler
     {
-        if (isset($this->routes[$method][$uri])) {
-            return $this->routes[$method][$uri];
+        $method = $request->getMethod();
+        $path = $request->getPath();
+
+        if (isset($this->routes[$method][$path])) {
+            return $this->routes[$method][$path];
         }
 
         // handle no route match with a 404
@@ -34,13 +36,13 @@ class Router
             throw new BadMethodCallException();
         }
 
-        $uri = array_shift($arguments);
+        $path = array_shift($arguments);
         $handler = array_shift($arguments);
         $dependencies = $arguments;
 
         $this->routes = array_merge_recursive(
             $this->routes,
-            [strtoupper($method) => [$uri => new RouteHandler($handler, $dependencies)]]
+            [strtoupper($method) => [$path => new RouteHandler($handler, $dependencies)]]
         );
 
         return $this;
