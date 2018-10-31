@@ -22,6 +22,14 @@ class Response
 
     public function __toString() : string
     {
-        return json_encode($this->body);
+        $json = json_encode($this->body);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new JsonException(
+                'The given JSON could not be encoded: ' . json_last_error_msg()
+            );
+        }
+
+        return $json;
     }
 }
