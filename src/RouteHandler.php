@@ -8,6 +8,9 @@ use Psr\Http\Message\RequestInterface as Request;
 
 class RouteHandler
 {
+    private $handler;
+    private $dependencies;
+
     public function __construct(callable $handler, array $dependencies = [])
     {
         $this->handler = $handler;
