@@ -7,13 +7,13 @@
             "email": "hello@joehaines.co.uk"
         }
     ],
-    "require": {
-        "psr/http-message": "^1.0"
-    },
     "autoload": {
         "psr-4": {
             "Bff\\": "src/"
         }
+    },
+    "require": {
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.4"
