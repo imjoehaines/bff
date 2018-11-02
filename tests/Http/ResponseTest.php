@@ -37,7 +37,7 @@ class ResponseTest extends TestCase
     {
         $response = new Response([], $code);
 
-        $this->assertSame($code, $response->getStatusCode());
+        $this->assertSame($code, $response->statusCode());
     }
 
     /**

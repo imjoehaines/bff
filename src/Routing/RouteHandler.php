@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Bff\Routing;
 
+use Bff\Http\Request;
+use Bff\Http\Response;
+
 class RouteHandler
 {
     private $handler;
@@ -19,6 +22,6 @@ class RouteHandler
     {
         // $this->handler() results in a fatal so we have to wrap it in parens
         // so PHP can figure out how to call $this->handler
-        return ($this->handler)($request, new Respond, ...$this->dependencies);
+        return ($this->handler)($request, new Response, ...$this->dependencies);
     }
 }

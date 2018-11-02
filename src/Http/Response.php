@@ -4,18 +4,30 @@ declare(strict_types=1);
 
 namespace Bff\Http;
 
+use Bff\JsonException;
+
 class Response
 {
     private $body;
     private $statusCode;
 
-    public function __construct(array $body, int $statusCode)
+    public function __construct(array $body = [], int $statusCode = 200)
     {
         $this->body = $body;
         $this->statusCode = $statusCode;
     }
 
-    public function getStatusCode() : int
+    public function withBody(array $body)
+    {
+        return new static($body, $this->statusCode);
+    }
+
+    public function withStatusCode(int $statusCode)
+    {
+        return new static($this->body, $statusCode);
+    }
+
+    public function statusCode() : int
     {
         return $this->statusCode;
     }

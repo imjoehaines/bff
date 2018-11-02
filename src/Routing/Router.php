@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bff\Routing;
 
+use Bff\Http\Response;
+use Bff\Routing\Request;
 use BadMethodCallException;
 
 class Router
@@ -18,8 +20,8 @@ class Router
         }
 
         // handle no route match with a 404
-        return new RouteHandler(function (Request $request, Respond $respond) : Response {
-            return $respond([], 404);
+        return new RouteHandler(function (Request $request, Response $response) : Response {
+            return $response->withStatusCode(404);
         });
     }
 
