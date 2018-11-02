@@ -40,7 +40,6 @@ class Request
 
     public function getQueryParamter(string $key)
     {
-        // TODO should this throw?
         return $this->queryParameters[$key] ?? null;
     }
 
