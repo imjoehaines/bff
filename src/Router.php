@@ -11,11 +11,8 @@ class Router
     private $allowedMethods = ['POST', 'GET', 'PUT', 'PATCH', 'DELETE'];
     private $routes = [];
 
-    public function match(Request $request) : RouteHandler
+    public function match(string $method, string $path) : RouteHandler
     {
-        $method = $request->getMethod();
-        $path = $request->getPath();
-
         if (isset($this->routes[$method][$path])) {
             return $this->routes[$method][$path];
         }
