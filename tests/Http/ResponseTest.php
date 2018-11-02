@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BffTests\Http;
 
-use Bff\Response;
-use Bff\JsonException;
+use Bff\Http\Response;
+use Bff\Http\JsonException;
 use PHPUnit\Framework\TestCase;
 
 class ResponseTest extends TestCase
