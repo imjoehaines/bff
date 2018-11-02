@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bff\Http;
 
-use Bff\JsonException;
+use Bff\Http\JsonException;
 
 class Response
 {
