@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bff;
+namespace Bff\Http;
 
 class Respond
 {

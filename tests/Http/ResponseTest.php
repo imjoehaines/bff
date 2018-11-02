@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BffTests;
+namespace BffTests\Http;
 
 use Bff\Response;
 use Bff\JsonException;
