@@ -25,7 +25,7 @@ class Router
         });
     }
 
-    public function get(string $path, callable $handler, ...$dependencies) : Router
+    public function get(string $path, callable $handler, array $dependencies = []) : Router
     {
         return $this->addRoute(
             Method::get(),
@@ -35,7 +35,7 @@ class Router
         );
     }
 
-    public function post(string $path, callable $handler, ...$dependencies) : Router
+    public function post(string $path, callable $handler, array $dependencies = []) : Router
     {
         return $this->addRoute(
             Method::post(),
@@ -45,7 +45,7 @@ class Router
         );
     }
 
-    public function put(string $path, callable $handler, ...$dependencies) : Router
+    public function put(string $path, callable $handler, array $dependencies = []) : Router
     {
         return $this->addRoute(
             Method::put(),
@@ -55,7 +55,7 @@ class Router
         );
     }
 
-    public function patch(string $path, callable $handler, ...$dependencies) : Router
+    public function patch(string $path, callable $handler, array $dependencies = []) : Router
     {
         return $this->addRoute(
             Method::patch(),
@@ -65,7 +65,7 @@ class Router
         );
     }
 
-    public function delete(string $path, callable $handler, ...$dependencies) : Router
+    public function delete(string $path, callable $handler, array $dependencies = []) : Router
     {
         return $this->addRoute(
             Method::delete(),
