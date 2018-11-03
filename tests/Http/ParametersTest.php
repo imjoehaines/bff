@@ -29,6 +29,16 @@ class ParametersTest extends TestCase
         );
     }
 
+    public function testItReturnsTrueIfAKeyIsPresentAndValueIsNull()
+    {
+        $parameters = new Parameters(['a' => 1, 'b' => 2, 'c' => null]);
+
+        $this->assertSame(
+            true,
+            $parameters->has('c')
+        );
+    }
+
     public function testItReturnsFalseIfAKeyIsNotPresent()
     {
         $parameters = new Parameters(['a' => 1, 'b' => 2]);
