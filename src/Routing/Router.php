@@ -6,8 +6,8 @@ namespace Bff\Routing;
 
 use Bff\Http\Url;
 use Bff\Http\Method;
+use Bff\Http\Request;
 use Bff\Http\Response;
-use Bff\Routing\Request;
 use BadMethodCallException;
 
 class Router
