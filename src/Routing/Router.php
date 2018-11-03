@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Bff\Routing;
 
+use Bff\Http\Method;
 use Bff\Http\Response;
 use Bff\Routing\Request;
 use BadMethodCallException;
 
 class Router
 {
-    private $allowedMethods = ['POST', 'GET', 'PUT', 'PATCH', 'DELETE'];
     private $routes = [];
 
     public function match(string $method, string $path) : RouteHandler
@@ -25,23 +25,65 @@ class Router
         });
     }
 
-    public function __call(string $method, array $arguments) : Router
+    public function get(string $path, callable $handler, ...$dependencies) : Router
     {
-        if (!isset($arguments[0], $arguments[1]) ||
-            !is_string($arguments[0]) ||
-            !is_callable($arguments[1]) ||
-            !in_array(strtoupper($method), $this->allowedMethods, true)
-        ) {
-            throw new BadMethodCallException();
-        }
+        return $this->addRoute(
+            Method::get(),
+            $path,
+            $handler,
+            $dependencies
+        );
+    }
 
-        $path = array_shift($arguments);
-        $handler = array_shift($arguments);
-        $dependencies = $arguments;
+    public function post(string $path, callable $handler, ...$dependencies) : Router
+    {
+        return $this->addRoute(
+            Method::post(),
+            $path,
+            $handler,
+            $dependencies
+        );
+    }
 
+    public function put(string $path, callable $handler, ...$dependencies) : Router
+    {
+        return $this->addRoute(
+            Method::put(),
+            $path,
+            $handler,
+            $dependencies
+        );
+    }
+
+    public function patch(string $path, callable $handler, ...$dependencies) : Router
+    {
+        return $this->addRoute(
+            Method::patch(),
+            $path,
+            $handler,
+            $dependencies
+        );
+    }
+
+    public function delete(string $path, callable $handler, ...$dependencies) : Router
+    {
+        return $this->addRoute(
+            Method::delete(),
+            $path,
+            $handler,
+            $dependencies
+        );
+    }
+
+    private function addRoute(
+        Method $method,
+        string $path,
+        callable $handler,
+        array $dependencies
+    ) : Router {
         $this->routes = array_merge_recursive(
             $this->routes,
-            [strtoupper($method) => [$path => new RouteHandler($handler, $dependencies)]]
+            [(string) $method => [$path => new RouteHandler($handler, $dependencies)]]
         );
 
         return $this;
