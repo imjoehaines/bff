@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bff\Routing;
 
+use Bff\Http\Url;
 use Bff\Http\Method;
 use Bff\Http\Response;
 use Bff\Routing\Request;
@@ -13,10 +14,10 @@ class Router
 {
     private $routes = [];
 
-    public function match(string $method, string $path) : RouteHandler
+    public function match(Method $method, Url $url) : RouteHandler
     {
-        if (isset($this->routes[$method][$path])) {
-            return $this->routes[$method][$path];
+        if (isset($this->routes[(string) $method][$url->path()])) {
+            return $this->routes[(string) $method][$url->path()];
         }
 
         // handle no route match with a 404
