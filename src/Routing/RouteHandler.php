@@ -20,8 +20,6 @@ class RouteHandler
 
     public function handle(Request $request) : Response
     {
-        // $this->handler() results in a fatal so we have to wrap it in parens
-        // so PHP can figure out how to call $this->handler
         return ($this->handler)($request, new Response, ...$this->dependencies);
     }
 }
