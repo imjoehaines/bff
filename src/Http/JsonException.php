@@ -7,6 +7,6 @@ namespace Bff\Http;
 // on PHP >= 7.3 we can extend the built-in JsonException instead
 use Exception;
 
-class JsonException extends Exception
+final class JsonException extends Exception
 {
 }

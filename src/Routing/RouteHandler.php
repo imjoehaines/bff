@@ -7,7 +7,7 @@ namespace Bff\Routing;
 use Bff\Http\Request;
 use Bff\Http\Response;
 
-class RouteHandler
+final class RouteHandler
 {
     private $handler;
     private $dependencies;

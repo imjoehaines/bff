@@ -10,7 +10,7 @@ use Bff\Http\Request;
 use Bff\Http\Response;
 use BadMethodCallException;
 
-class Router
+final class Router
 {
     private $routes = [];
 

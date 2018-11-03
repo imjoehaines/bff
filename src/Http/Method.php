@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Bff\Http;
 
-class Method
+final class Method
 {
     private $value;
 

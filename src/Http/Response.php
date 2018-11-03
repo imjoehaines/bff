@@ -6,7 +6,7 @@ namespace Bff\Http;
 
 use Bff\Http\JsonException;
 
-class Response
+final class Response
 {
     private $body;
     private $statusCode;

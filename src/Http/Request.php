@@ -8,7 +8,7 @@ use Bff\Http\Url;
 use Bff\Http\Method;
 use Bff\Http\Parameters;
 
-class Request
+final class Request
 {
     private $method;
     private $url;

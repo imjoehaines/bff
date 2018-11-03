@@ -6,7 +6,7 @@ namespace Bff\Http;
 
 use InvalidArgumentException;
 
-class Url
+final class Url
 {
     private $path;
 
