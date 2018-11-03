@@ -24,6 +24,13 @@ class UrlTest extends TestCase
         $this->assertSame('/an/example/path', $url->path());
     }
 
+    public function testItNormalisesMissingPaths()
+    {
+        $url = Url::from('https://example.com');
+
+        $this->assertSame('/', $url->path());
+    }
+
     public function testItThrowsOnInvalidUrl()
     {
         $this->expectException(InvalidArgumentException::class);

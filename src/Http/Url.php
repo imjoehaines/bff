@@ -53,7 +53,7 @@ class Url
             throw new InvalidArgumentException('The given string "' . $url . '" gave a password with no user');
         }
 
-        $path = $parsedUrl['path'] ?? '';
+        $path = $parsedUrl['path'] ?? '/';
 
         $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
 
