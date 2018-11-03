@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ParametersTest extends TestCase
 {
-    public function testItAcceptsAnArrayOfData()
+    public function testItAcceptsAnArrayOfData() : void
     {
         $parameters = new Parameters(['a' => 1, 'b' => 2]);
 
@@ -19,7 +19,7 @@ class ParametersTest extends TestCase
         );
     }
 
-    public function testItReturnsTrueIfAKeyIsPresent()
+    public function testItReturnsTrueIfAKeyIsPresent() : void
     {
         $parameters = new Parameters(['a' => 1, 'b' => 2]);
 
@@ -29,7 +29,7 @@ class ParametersTest extends TestCase
         );
     }
 
-    public function testItReturnsTrueIfAKeyIsPresentAndValueIsNull()
+    public function testItReturnsTrueIfAKeyIsPresentAndValueIsNull() : void
     {
         $parameters = new Parameters(['a' => 1, 'b' => 2, 'c' => null]);
 
@@ -39,7 +39,7 @@ class ParametersTest extends TestCase
         );
     }
 
-    public function testItReturnsFalseIfAKeyIsNotPresent()
+    public function testItReturnsFalseIfAKeyIsNotPresent() : void
     {
         $parameters = new Parameters(['a' => 1, 'b' => 2]);
 
@@ -49,7 +49,7 @@ class ParametersTest extends TestCase
         );
     }
 
-    public function testItReturnsValueForAGivenKey()
+    public function testItReturnsValueForAGivenKey() : void
     {
         $parameters = new Parameters(['a' => 1, 'b' => 2]);
 

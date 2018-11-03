@@ -10,28 +10,28 @@ use PHPUnit\Framework\TestCase;
 
 class UrlTest extends TestCase
 {
-    public function testItCanBeConstructedFromValidUrl()
+    public function testItCanBeConstructedFromValidUrl() : void
     {
         $url = Url::from('https://example.com');
 
         $this->assertSame(Url::class, get_class($url));
     }
 
-    public function testItReturnsThePathFromTheGivenUrl()
+    public function testItReturnsThePathFromTheGivenUrl() : void
     {
         $url = Url::from('https://example.com/an/example/path');
 
         $this->assertSame('/an/example/path', $url->path());
     }
 
-    public function testItNormalisesMissingPaths()
+    public function testItNormalisesMissingPaths() : void
     {
         $url = Url::from('https://example.com');
 
         $this->assertSame('/', $url->path());
     }
 
-    public function testItThrowsOnInvalidUrl()
+    public function testItThrowsOnInvalidUrl() : void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The given string "http://:80" is not a valid URL');
@@ -39,7 +39,7 @@ class UrlTest extends TestCase
         Url::from('http://:80');
     }
 
-    public function testItThrowsOnInvalidSchemes()
+    public function testItThrowsOnInvalidSchemes() : void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The given string "ssh://example.com" uses a non-HTTP or HTTPS scheme');

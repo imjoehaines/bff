@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase
 {
-    public function testItReturnsTheGivenMethod()
+    public function testItReturnsTheGivenMethod() : void
     {
         $method = Method::get();
         $url = Url::from('http://example.com');
@@ -27,7 +27,7 @@ class RequestTest extends TestCase
         $this->assertSame($method, $request->method());
     }
 
-    public function testItReturnsTheGivenUrl()
+    public function testItReturnsTheGivenUrl() : void
     {
         $method = Method::get();
         $url = Url::from('http://example.com');
@@ -42,7 +42,7 @@ class RequestTest extends TestCase
         $this->assertSame($url, $request->url());
     }
 
-    public function testItReturnsTheGivenParameters()
+    public function testItReturnsTheGivenParameters() : void
     {
         $method = Method::get();
         $url = Url::from('http://example.com');
