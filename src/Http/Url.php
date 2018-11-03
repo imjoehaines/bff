@@ -8,16 +8,17 @@ use InvalidArgumentException;
 
 class Url
 {
-    private $url;
+    private $path;
 
-    private function __construct(string $url)
+    // TODO do we need any of these?
+    private function __construct(/*$scheme, $basicAuth, $host, $port, */$path/*, $query, $fragment*/)
     {
-        $this->url = $url;
+        $this->path = $path;
     }
 
     public function path() : string
     {
-        return parse_url($this->url, PHP_URL_PATH);
+        return $this->path;
     }
 
     public static function from(string $url) : Url
@@ -52,20 +53,13 @@ class Url
             throw new InvalidArgumentException('The given string "' . $url . '" gave a password with no user');
         }
 
-        $path = $parsedUrl['path'] ?? null;
+        $path = $parsedUrl['path'] ?? '';
 
         $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
 
         $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
 
-        $finalUrl = "{$scheme}://{$basicAuth}{$host}{$port}{$path}{$query}{$fragment}";
-
-        if ($finalUrl !== $url) {
-            throw new InvalidArgumentException(
-                'URL parsing failed: the given string "' . $url . '" parsed to "' . $finalUrl . '"'
-            );
-        }
-
-        return new static($finalUrl);
+        // TODO do we need any of these?
+        return new static(/*$scheme, $basicAuth, $host, $port, */$path/*, $query, $fragment*/);
     }
 }
