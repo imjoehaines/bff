@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BffTests\Http;
 
-use Bff\Http\Url;
 use Bff\Http\Method;
 use Bff\Http\Request;
 use Bff\Http\Parameters;
@@ -15,42 +14,23 @@ class RequestTest extends TestCase
     public function testItReturnsTheGivenMethod() : void
     {
         $method = Method::get();
-        $url = Url::from('http://example.com');
         $parameters = new Parameters();
 
         $request = new Request(
             $method,
-            $url,
             $parameters
         );
 
         $this->assertSame($method, $request->method());
     }
 
-    public function testItReturnsTheGivenUrl() : void
-    {
-        $method = Method::get();
-        $url = Url::from('http://example.com');
-        $parameters = new Parameters();
-
-        $request = new Request(
-            $method,
-            $url,
-            $parameters
-        );
-
-        $this->assertSame($url, $request->url());
-    }
-
     public function testItReturnsTheGivenParameters() : void
     {
         $method = Method::get();
-        $url = Url::from('http://example.com');
         $parameters = new Parameters();
 
         $request = new Request(
             $method,
-            $url,
             $parameters
         );
 

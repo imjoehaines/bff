@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BffTests\Routing;
 
-use Bff\Http\Url;
 use Bff\Http\Method;
 use Bff\Http\Request;
 use Bff\Http\Response;
@@ -31,7 +30,7 @@ class RouterTest extends TestCase
         $router = new Router();
         $router->$method($path, $handler);
 
-        $routeHandler = $router->match(Method::$method(), Url::from('http://example.com'));
+        $routeHandler = $router->match(Method::$method(), '/');
 
         $this->assertSame(
             RouteHandler::class,
@@ -58,12 +57,11 @@ class RouterTest extends TestCase
         $router->$method($path, $handler);
 
         $method = Method::$method();
-        $url = Url::from('http://example.com');
 
-        $routeHandler = $router->match($method, $url);
+        $routeHandler = $router->match($method, $path);
 
         $response = $routeHandler->handle(
-            new Request($method, $url, new Parameters())
+            new Request($method, new Parameters())
         );
 
         $this->assertSame(400, $response->statusCode());
@@ -98,12 +96,11 @@ class RouterTest extends TestCase
         $router->$method($path, $handler, [1, 'hi', [1, 2, 3]]);
 
         $method = Method::$method();
-        $url = Url::from('http://example.com');
 
-        $routeHandler = $router->match($method, $url);
+        $routeHandler = $router->match($method, $path);
 
         $response = $routeHandler->handle(
-            new Request($method, $url, new Parameters())
+            new Request($method, new Parameters())
         );
 
         $this->assertSame(400, $response->statusCode());
