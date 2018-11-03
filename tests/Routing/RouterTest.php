@@ -9,6 +9,7 @@ use Bff\Http\Method;
 use Bff\Http\Request;
 use Bff\Http\Response;
 use Bff\Routing\Router;
+use Bff\Http\Parameters;
 use Bff\Routing\RouteHandler;
 use PHPUnit\Framework\TestCase;
 
@@ -44,10 +45,8 @@ class RouterTest extends TestCase
      * @param string $method
      * @return void
      */
-    public function testItCanProvideDependenciesToResponseHandler(string $method) : void
+    public function testItRoutesRequests(string $method) : void
     {
-        $this->markTestIncomplete('Need the request class to be able to call `handle`');
-
         $path = '/';
         $handler = function (Request $request, Response $response) : Response {
             $this->assertSame(200, $response->statusCode());
@@ -58,11 +57,16 @@ class RouterTest extends TestCase
         $router = new Router();
         $router->$method($path, $handler);
 
-        $routeHandler = $router->match(Method::$method(), Url::from('http://example.com'));
+        $method = Method::$method();
+        $url = Url::from('http://example.com');
 
-        $routeHandler->handle(
-            new Request()
+        $routeHandler = $router->match($method, $url);
+
+        $response = $routeHandler->handle(
+            new Request($method, $url, new Parameters())
         );
+
+        $this->assertSame(400, $response->statusCode());
     }
 
     public function methods() : array
