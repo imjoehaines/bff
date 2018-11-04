@@ -21,6 +21,10 @@ final class Router
             return $this->routes[$method][$path];
         }
 
+        if (!isset($this->routes[$method])) {
+            return $this->notFound();
+        }
+
         foreach ($this->routes[$method] as $regex => $handler) {
             $matches = [];
 
@@ -35,7 +39,11 @@ final class Router
             }
         }
 
-        // handle no route match with a 404
+        return $this->notFound();
+    }
+
+    private function notFound() : RouteHandler
+    {
         return new RouteHandler(function (Request $request, Response $response) : Response {
             return $response->withStatusCode(404);
         });

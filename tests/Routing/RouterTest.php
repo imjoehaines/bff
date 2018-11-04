@@ -44,6 +44,29 @@ class RouterTest extends TestCase
      * @param string $method
      * @return void
      */
+    public function testItWill404WhenRequestHasNoMatchingRoute(string $method) : void
+    {
+        $handler = function (Request $request, Response $response) : Response {
+            return $response;
+        };
+
+        $router = new Router();
+
+        $routeHandler = $router->match(Method::$method(), '/');
+
+        $response = $routeHandler->handle(
+            new Request(Method::$method(), new Parameters())
+        );
+
+        $this->assertSame(404, $response->statusCode());
+    }
+
+    /**
+     * @dataProvider methods
+     *
+     * @param string $method
+     * @return void
+     */
     public function testItRoutesRequests(string $method) : void
     {
         $path = '/';
