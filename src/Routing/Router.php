@@ -15,8 +15,24 @@ final class Router
 
     public function match(Method $method, string $path) : RouteHandler
     {
-        if (isset($this->routes[(string) $method][$path])) {
-            return $this->routes[(string) $method][$path];
+        $method = (string) $method;
+
+        if (isset($this->routes[$method][$path])) {
+            return $this->routes[$method][$path];
+        }
+
+        foreach ($this->routes[$method] as $regex => $handler) {
+            $matches = [];
+
+            if (preg_match($regex, $path, $matches) === 1) {
+                $variables = array_map(function (string $value) {
+                    return is_numeric($value)
+                    ? $value + 0 // + 0 to preserve floats
+                    : $value;
+                }, array_slice($matches, 1));
+
+                return $handler->withVariables($variables);
+            }
         }
 
         // handle no route match with a 404
