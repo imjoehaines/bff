@@ -16,7 +16,7 @@ final class App
 
     public function __construct(
         Router $router,
-        ServerRequestFactoryInterface $requestFactory = null,
+        ?ServerRequestFactoryInterface $requestFactory = null,
         UriFactoryInterface $uriFactory = null
     ) {
         $this->router = $router;
