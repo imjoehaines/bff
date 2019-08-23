@@ -28,7 +28,7 @@ final class App
     public function run(array $serverParameters): ResponseInterface
     {
         // TODO check these first?
-        $uri = $this->uriFactory->createUri($serverParameters['REQUEST_URI']) ?? '');
+        $uri = $this->uriFactory->createUri($serverParameters['REQUEST_URI'] ?? '');
         $method = $serverParameters['REQUEST_METHOD'] ?? '';
 
         $request = $this->requestFactory->createServerRequest(
