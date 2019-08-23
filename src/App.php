@@ -6,7 +6,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
-use Nyholm\Psr7\Factory\Psr17Factory as DefaultPsr17Factory;
+use Nyholm\Psr7\Factory\Psr17Factory as DefaultUriFactory;
+use Nyholm\Psr7\Factory\Psr17Factory as DefaultServerRequestFactory;
 
 final class App
 {
@@ -49,8 +50,8 @@ final class App
             return $maybeRequestFactory;
         }
 
-        if (class_exists(DefaultPsr17Factory::class)) {
-            return new DefaultPsr17Factory();
+        if (class_exists(DefaultServerRequestFactory::class)) {
+            return new DefaultServerRequestFactory();
         }
 
         throw new RuntimeException(sprintf(
@@ -66,8 +67,8 @@ final class App
             return $maybeUriFactory;
         }
 
-        if (class_exists(DefaultPsr17Factory::class)) {
-            return new DefaultPsr17Factory();
+        if (class_exists(DefaultUriFactory::class)) {
+            return new DefaultUriFactory();
         }
 
         throw new RuntimeException(sprintf(
