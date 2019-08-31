@@ -39,6 +39,9 @@ final class DefaultConfiguration
         return $_FILES;
     }
 
+    /**
+     * @return resource
+     */
     public function getRawBody()
     {
         $stream = fopen('php://input', 'rb');
