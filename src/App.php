@@ -2,6 +2,7 @@
 
 namespace Bff;
 
+use RuntimeException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -45,8 +46,7 @@ final class App
             ->withQueryParams($configuration->getQueryParameters())
             ->withParsedBody($configuration->getPostParameters())
             ->withUploadedFiles($configuration->getUploadedFiles()) // TODO structure of this is wrong
-            ->withBody($body)
-        ;
+            ->withBody($body);
 
         foreach ($configuration->getHeaders() as $header => $value) {
             $request = $request->withAddedHeader($header, $value);
@@ -69,10 +69,12 @@ final class App
             return new DefaultServerRequestFactory();
         }
 
-        throw new RuntimeException(sprintf(
-            'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
-            ServerRequestFactoryInterface::class
-        ));
+        throw new RuntimeException(
+            sprintf(
+                'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
+                ServerRequestFactoryInterface::class
+            )
+        );
     }
 
     private function fetchUriFactory(
@@ -86,10 +88,12 @@ final class App
             return new DefaultUriFactory();
         }
 
-        throw new RuntimeException(sprintf(
-            'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
-            UriFactoryInterface::class
-        ));
+        throw new RuntimeException(
+            sprintf(
+                'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
+                UriFactoryInterface::class
+            )
+        );
     }
 
     private function fetchStreamFactory(
@@ -103,9 +107,11 @@ final class App
             return new DefaultStreamFactory();
         }
 
-        throw new RuntimeException(sprintf(
-            'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
-            StreamFactoryInterface::class
-        ));
+        throw new RuntimeException(
+            sprintf(
+                'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
+                StreamFactoryInterface::class
+            )
+        );
     }
 }

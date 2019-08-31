@@ -36,6 +36,6 @@ final class DefaultConfiguration implements Configuration
 
     public function getRawBody()
     {
-        return fopen('php://input', 'r');
+        return fopen('php://input', 'rb');
     }
 }

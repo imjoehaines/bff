@@ -2,6 +2,7 @@
 
 namespace Bff;
 
+use RuntimeException;
 use Psr\Http\Message\UriInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -68,7 +69,7 @@ final class Router
             return $this->createNotFoundHandler($this->responseFactory);
         }
 
-        if (!$this->container->has($routeHandlerIndentifier)) {
+        if ( ! $this->container->has($routeHandlerIndentifier)) {
             // TODO we should almost definitely be erroring here!
             //      however we need some concept of dev/production first as in
             //      production we should handle this gracefully
@@ -80,7 +81,8 @@ final class Router
 
     private function createNotFoundHandler(ResponseFactoryInterface $responseFactory)
     {
-        return new class ($responseFactory) implements RequestHandlerInterface {
+        return new class ($responseFactory) implements RequestHandlerInterface
+        {
             private $responseFactory;
 
             public function __construct(ResponseFactoryInterface $responseFactory)
@@ -106,9 +108,11 @@ final class Router
             return new DefaultResponseFactory();
         }
 
-        throw new RuntimeException(sprintf(
-            'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
-            ResponseFactoryInterface::class
-        ));
+        throw new RuntimeException(
+            sprintf(
+                'You must pass an instance of "%s" or run `composer install nyholm/psr7`',
+                ResponseFactoryInterface::class
+            )
+        );
     }
 }
