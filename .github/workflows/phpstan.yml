@@ -1,0 +1,16 @@
+name: PHPStan
+
+on: [push]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [7.3]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Composer dependencies
+      run: php${{ matrix.php }} $(which composer) install --prefer-dist --no-progress --no-suggest
+    - name: Run PHPStan
+      run: php${{ matrix.php }} $(which composer) test:phpstan

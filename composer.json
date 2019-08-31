@@ -9,6 +9,9 @@
             "BffExample\\": "example/"
         }
     },
+    "scripts": {
+        "test:phpstan": "phpstan analyse"
+    },
     "require": {
         "php": "^7.3",
         "psr/http-message": "^1.0",
