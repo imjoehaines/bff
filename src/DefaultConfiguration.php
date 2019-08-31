@@ -13,6 +13,9 @@ final class DefaultConfiguration
 
     public function getHeaders(): array
     {
+        // TODO this is supposed to work in PHP FPM so it should work under NGINX (since PHP 7.3) but
+        //      this needs to be tested
+        /** @noinspection PhpComposerExtensionStubsInspection */
         return getallheaders();
     }
 
