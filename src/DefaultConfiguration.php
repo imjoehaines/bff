@@ -4,7 +4,7 @@ namespace Bff;
 
 use RuntimeException;
 
-final class DefaultConfiguration implements Configuration
+final class DefaultConfiguration
 {
     public function getServerParameters(): array
     {

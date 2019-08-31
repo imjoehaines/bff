@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestFactoryInterface;
 use Nyholm\Psr7\Factory\Psr17Factory as DefaultUriFactory;
 use Nyholm\Psr7\Factory\Psr17Factory as DefaultStreamFactory;
 use Nyholm\Psr7\Factory\Psr17Factory as DefaultServerRequestFactory;
+use Bff\DefaultConfiguration as Configuration;
 
 final class App
 {
