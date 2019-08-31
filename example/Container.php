@@ -8,6 +8,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 final class Container implements ContainerInterface
 {
+    /**
+     * @var array
+     */
     private $dependencies = [];
 
     public function __construct()

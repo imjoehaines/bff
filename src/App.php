@@ -14,9 +14,24 @@ use Nyholm\Psr7\Factory\Psr17Factory as DefaultServerRequestFactory;
 
 final class App
 {
+    /**
+     * @var Router
+     */
     private $router;
+
+    /**
+     * @var ServerRequestFactoryInterface
+     */
     private $requestFactory;
+
+    /**
+     * @var UriFactoryInterface
+     */
     private $uriFactory;
+
+    /**
+     * @var StreamFactoryInterface
+     */
     private $streamFactory;
 
     public function __construct(

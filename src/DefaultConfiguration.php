@@ -2,6 +2,8 @@
 
 namespace Bff;
 
+use RuntimeException;
+
 final class DefaultConfiguration implements Configuration
 {
     public function getServerParameters(): array
@@ -36,6 +38,12 @@ final class DefaultConfiguration implements Configuration
 
     public function getRawBody()
     {
-        return fopen('php://input', 'rb');
+        $stream = fopen('php://input', 'rb');
+
+        if ( ! is_resource($stream)) {
+            throw new RuntimeException('Unable to open "php://input" for reading');
+        }
+
+        return $stream;
     }
 }

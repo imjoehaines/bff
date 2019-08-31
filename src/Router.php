@@ -13,8 +13,19 @@ use Nyholm\Psr7\Factory\Psr17Factory as DefaultResponseFactory;
 
 final class Router
 {
+    /**
+     * @var ContainerInterface
+     */
     private $container;
+
+    /**
+     * @var ResponseFactoryInterface
+     */
     private $responseFactory;
+
+    /**
+     * @var array
+     */
     private $routes = [];
 
     public function __construct(
@@ -79,10 +90,13 @@ final class Router
         return $this->container->get($routeHandlerIndentifier);
     }
 
-    private function createNotFoundHandler(ResponseFactoryInterface $responseFactory)
+    private function createNotFoundHandler(ResponseFactoryInterface $responseFactory): RequestHandlerInterface
     {
         return new class ($responseFactory) implements RequestHandlerInterface
         {
+            /**
+             * @var ResponseFactoryInterface
+             */
             private $responseFactory;
 
             public function __construct(ResponseFactoryInterface $responseFactory)

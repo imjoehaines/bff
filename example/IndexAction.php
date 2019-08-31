@@ -9,6 +9,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 
 final class IndexAction implements RequestHandlerInterface
 {
+    /**
+     * @var ResponseFactoryInterface 
+     */
     private $responseFactory;
 
     public function __construct(ResponseFactoryInterface $responseFactory)
